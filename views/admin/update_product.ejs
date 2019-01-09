@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="col-md-4 col-md-offset-4">
+  <h3>Add New Product</h3>
+  <hr />
+  <form action="/admin/add_product/update" method="post" enctype="multipart/form-data">
+  	<div class="form-group">
+  		<label>Product Name</label>
+  		<input type="text" placeholder="Product Name" name="product_name" value="<%= prodata.product_name %>" class="form-control">
+
+  	</div>
+    <div class="form-group">
+      <label>Current Image</label>
+      <img src="/product_image/<%= prodata.product_image %>" height="100" width="100">
+
+    </div>
+    
+    <div class="form-group">
+      <label>Product Image</label>
+      <input type="file" name="image" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Product Price</label>
+      <input value="<%= prodata.product_price %>" type="text" placeholder="Product Price" name="product_price" class="form-control">
+
+    </div>
+    
+    <div class="form-group">
+      <label>Product Category</label>
+      <select class="form-control" name="category_id">
+        <option>Select</option>
+        <% catedata.forEach(function(x){ %>
+
+          <% if(prodata.category_id == x.category_id)
+          { %>
+            <option selected="selected" value="<%= x.category_id %>"><%= x.category_name %></option>
+          <% }
+          else
+          { %>
+            <option value="<%= x.category_id %>"><%= x.category_name %></option>
+         <% } %>
+
+          
+      <% }) %>
+      </select>
+
+    </div>
+    <div class="form-group">
+      <label>Product Detail</label>
+      <textarea class="form-control" name="product_description"><%= prodata.product_description %></textarea>
+
+    </div>
+    <div class="form-group">
+      <label>Product Discount</label>
+      <input type="text" value="<%= prodata.product_discount %>" placeholder="Discount" name="product_discount" class="form-control">
+
+    </div>
+    <input type="hidden" name="product_id" value="<%= prodata.product_id %>" />
+    <input type="hidden" name="product_image" value="<%= prodata.product_image %>" />
+  	<input type="submit" value="Add" class="btn btn-primary">
+  </form>
+</div>
+
+
+</div>
